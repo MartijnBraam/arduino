@@ -50,7 +50,7 @@ int main(void)
 				dir = 1;
 			}
 		}
-		_delay_us(1);
+		_delay_us(10);
 		
 	}
 
