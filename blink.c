@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 void init_io(void)
 {
@@ -34,9 +35,23 @@ int main(void)
 {
 	init_io();
 	init_timers();
+	uint8_t dir = 0;
 	
 	while (1)
-	{
+	{	
+		if(dir>0){
+			OCR1B++;
+			if(OCR1B == OCR1A){
+				dir = 0;
+			}
+		}else{
+			OCR1B--;
+			if(OCR1B==0){
+				dir = 1;
+			}
+		}
+		_delay_us(1);
+		
 	}
 
 	return 0;
