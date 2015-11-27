@@ -20,17 +20,13 @@ void init_timers(void)
 }
 
 ISR(TIMER1_COMPA_vect)
-{
-	PORTB = 255;
-	PORTC = 255;
-	PORTD = 255;
+{	
+	PORTB |= (1 << PB5);
 }
 
 ISR(TIMER1_COMPB_vect)
 {
-	PORTB = 0;
-	PORTC = 0;
-	PORTD = 0;
+	PORTB &= ~(1 << PB5);
 }
 
 
@@ -38,7 +34,7 @@ int main(void)
 {
 	init_io();
 	init_timers();
-
+	
 	while (1)
 	{
 	}
